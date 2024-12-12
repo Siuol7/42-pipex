@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 02:54:56 by caonguye          #+#    #+#             */
-/*   Updated: 2024/12/11 23:17:41 by caonguye         ###   ########.fr       */
+/*   Updated: 2024/12/12 13:05:27 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,29 +37,33 @@ void	redirect(int in, int stdin, int out, int stdout)
 	close(out);
 }
 
-void	pipex_fork(t_pipex *pipex)
+void	pipex_fork(t_pipex *pipex, int *pipe)
 {
 	pipex->pid = fork();
 	if (pipex->pid < 0)
 	{
 		perror("pipex: fork failed: \n");
+		close(pipe[0]);
+		close(pipe[1]);
 		exit(1);
 	}
 }
 
-void	last_free(t_pipex *pipex, int *track)
+void	last_free(t_pipex *pipex)
 {
 	int	i;
 
 	i = 0;
 	while (i < pipex->ac)
 	{
-		if (track[i] == 1)
+		if (pipex->track[i] == 1)
 		{
 			free(pipex->av[i]);
 			pipex->av[i] = NULL;
 		}
 		i++;
 	}
-	free(track);
+	if(pipex->track)
+		free(pipex->track);
+	pipex->track = NULL;
 }

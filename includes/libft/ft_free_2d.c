@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 08:05:24 by caonguye          #+#    #+#             */
-/*   Updated: 2024/12/04 01:38:00 by caonguye         ###   ########.fr       */
+/*   Updated: 2024/12/12 06:59:03 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,4 @@ void	ft_free_2d(void **arr)
 		i++;
 	}
 	free(arr);
-	arr = NULL;
 }

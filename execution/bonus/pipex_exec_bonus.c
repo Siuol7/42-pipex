@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 21:02:06 by caonguye          #+#    #+#             */
-/*   Updated: 2024/12/12 03:26:03 by caonguye         ###   ########.fr       */
+/*   Updated: 2024/12/12 12:53:18 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ static char	*gnrt_cmd_path(char **cmd, char **envp)
 	exit(127);
 }
 
-void	cmd_exec(char *av, char **envp)
+void	cmd_exec(char *av, t_pipex *pipex)
 {
 	char	**cmd;
 	char	*cmd_path;
@@ -106,8 +106,8 @@ void	cmd_exec(char *av, char **envp)
 		ft_free_2d((void **)cmd);
 		exit(127);
 	}
-	cmd_path = gnrt_cmd_path(cmd, envp);
-	execve(cmd_path, cmd, envp);
+	cmd_path = gnrt_cmd_path(cmd,pipex->envp);
+	execve(cmd_path, cmd, pipex->envp);
 	ft_printf_fd(2, "pipex: line 109: %s: %s\n", cmd_path, strerror(errno));
 	free(cmd_path);
 	ft_free_2d((void **)cmd);

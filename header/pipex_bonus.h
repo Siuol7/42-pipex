@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 02:53:48 by caonguye          #+#    #+#             */
-/*   Updated: 2024/12/12 03:25:06 by caonguye         ###   ########.fr       */
+/*   Updated: 2024/12/12 13:09:29 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_pipex
 	int				exit_status;
 	int				wait_status;
 	int				fork_times;
+	int				*track;
 	char			**av;
 	char			**envp;
 	pid_t			pid;
@@ -51,13 +52,13 @@ void	file_open(t_pipex *pipex);
 void	redirect(int in, int stdin, int out, int stdout);
 
 //pipex_exec_bonus
-void	cmd_exec(char *av, char **envp);
+void	cmd_exec(char *av, t_pipex *pipex);
 
 //pipex_utils_bonus
 void	pipe_generating(int	*pipe);
 void	redirect(int in, int stdin, int out, int stdout);
-void	pipex_fork(t_pipex *pipex);
-void	last_free(t_pipex *pipex, int *track);
+void	pipex_fork(t_pipex *pipex, int *pipe);
+void	last_free(t_pipex *pipex);
 
 //pipex_heredoc_bonus
 void	read_heredoc(t_pipex *pipex);
@@ -75,9 +76,9 @@ int		path_envp_check(char **envp);
 int		access_check(char **cmd);
 
 //pipex_quote_dquote
-char	*ft_quote_dquote(char *cmd, int	*track, int index);
+char	*ft_quote_dquote(char *cmd, int index, t_pipex *pipex);
 int		ft_quote_dquote_len(char *string, char sign);
-void	fill_quote_dquote(t_pipex *pipex, int *track);
+void	fill_quote_dquote(t_pipex *pipex);
 
 //pipex_split_sh
 char	**ft_split_sh(char *s, char c);

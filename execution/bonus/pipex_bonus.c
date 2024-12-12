@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 02:53:44 by caonguye          #+#    #+#             */
-/*   Updated: 2024/12/11 23:26:56 by caonguye         ###   ########.fr       */
+/*   Updated: 2024/12/12 13:14:36 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,8 @@
 
 static void	heredoc_cmd(t_pipex *pipex)
 {
-	pipex->pid = fork();
-	if (pipex->pid < 0)
-	{
-		perror("pipex: fork failed: \n");
-		exit(1);
-	}
-	else if (pipex->pid == 0)
+	pipex_fork(pipex, pipex->main_pipe);
+	if (pipex->pid == 0)
 	{
 		pipe_generating(pipex->heredoc);
 		read_heredoc(pipex);
@@ -28,20 +23,15 @@ static void	heredoc_cmd(t_pipex *pipex)
 		close(pipex->main_pipe[0]);
 		redirect(pipex->heredoc[0],
 			STDIN_FILENO, pipex->main_pipe[1], STDOUT_FILENO);
-		cmd_exec(pipex->av[3], pipex->envp);
+		cmd_exec(pipex->av[3], pipex);
 	}
 	pipex->fork_times++;
 }
 
 static void	first_cmd(t_pipex *pipex)
 {
-	pipex->pid = fork();
-	if (pipex->pid < 0)
-	{
-		perror("pipex: fork failed: \n");
-		exit(1);
-	}
-	else if (pipex->pid == 0)
+	pipex_fork(pipex, pipex->main_pipe);
+	if (pipex->pid == 0)
 	{
 		close(pipex->main_pipe[0]);
 		pipex->fd[0] = open(pipex->av[1], O_RDONLY);
@@ -54,7 +44,7 @@ static void	first_cmd(t_pipex *pipex)
 		}
 		redirect(pipex->fd[0],
 			STDIN_FILENO, pipex->main_pipe[1], STDOUT_FILENO);
-		cmd_exec(pipex->av[2], pipex->envp);
+		cmd_exec(pipex->av[2], pipex);
 	}
 	pipex->fork_times++;
 }
@@ -63,28 +53,23 @@ static void	next_cmd(t_pipex *pipex, int i)
 {
 	close(pipex->main_pipe[1]);
 	pipe_generating(pipex->sub_pipe);
-	pipex_fork(pipex);
-	pipex->fork_times++;
-	if (pipex->pid < 0)
-	{
-		perror("pipex: fork failed: \n");
-		exit(1);
-	}
-	else if (pipex->pid == 0)
+	pipex_fork(pipex, pipex->sub_pipe);
+	if (pipex->pid == 0)
 	{
 		close(pipex->sub_pipe[0]);
 		redirect(pipex->main_pipe[0],
 			STDIN_FILENO, pipex->sub_pipe[1], STDOUT_FILENO);
-		cmd_exec(pipex->av[i], pipex->envp);
+		cmd_exec(pipex->av[i], pipex);
 	}
 	redirect(pipex->sub_pipe[0],
 		pipex->main_pipe[0], pipex->sub_pipe[1], pipex->main_pipe[1]);
+	pipex->fork_times++;
 }
 
 static void	last_cmd(t_pipex *pipex)
 {
 	close(pipex->main_pipe[1]);
-	pipex_fork(pipex);
+	pipex_fork(pipex, pipex->main_pipe);
 	pipex->fork_times++;
 	if (pipex->pid == 0 && pipex->heredoc_sign == 1)
 	{
@@ -94,7 +79,7 @@ static void	last_cmd(t_pipex *pipex)
 		if (pipex->fd[1] < 0)
 			error_open(pipex, 93);
 		redirect(pipex->main_pipe[0], 0, pipex->fd[1], 1);
-		cmd_exec(pipex->av[pipex->ac - 2], pipex->envp);
+		cmd_exec(pipex->av[pipex->ac - 2], pipex);
 	}
 	else if (pipex->pid == 0 && pipex->heredoc_sign != 1)
 	{
@@ -104,7 +89,7 @@ static void	last_cmd(t_pipex *pipex)
 		if (pipex->fd[1] < 0)
 			error_open(pipex, 103);
 		redirect(pipex->main_pipe[0], 0, pipex->fd[1], 1);
-		cmd_exec(pipex->av[pipex->ac - 2], pipex->envp);
+		cmd_exec(pipex->av[pipex->ac - 2], pipex);
 	}
 	close(pipex->main_pipe[0]);
 }

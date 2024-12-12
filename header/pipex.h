@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 02:53:48 by caonguye          #+#    #+#             */
-/*   Updated: 2024/12/12 05:10:15 by caonguye         ###   ########.fr       */
+/*   Updated: 2024/12/12 12:30:27 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_pipex
 	int				exit_status;
 	int				wait_status;
 	int				fork_times;
+	int				*track;
 	char			**av;
 	char			**envp;
 	pid_t			pid;
@@ -45,10 +46,10 @@ void	pipexshell(t_pipex *pipex);
 
 //pipex_utils
 void	redirect(int in, int stdin, int out, int stdout);
-void	last_free(t_pipex *pipex, int **track);
+void	last_free(t_pipex *pipex);
 
 //pipex_exec
-void	cmd_exec(char *av, char **envp);
+void	cmd_exec(char *av, t_pipex *pipex);
 
 //pipex_error
 void	error_envp(char **cmd);
@@ -60,9 +61,9 @@ int		path_envp_check(char **envp);
 int		access_check(char **cmd);
 
 //pipex_quote_dquote
-char	*ft_quote_dquote(char *cmd, int	*track, int index);
+char	*ft_quote_dquote(char *cmd, int index, t_pipex *pipex);
 int		ft_quote_dquote_len(char *string, char sign);
-void	fill_quote_dquote(t_pipex *pipex, int *track);
+void	fill_quote_dquote(t_pipex *pipex);
 
 //pipex_read_quote_dquote
 char	*read_quote_dquote(char c);

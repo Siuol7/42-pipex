@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:35:25 by caonguye          #+#    #+#             */
-/*   Updated: 2024/12/11 23:15:05 by caonguye         ###   ########.fr       */
+/*   Updated: 2024/12/12 12:45:54 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ft_quote_dquote_len(char *string, char sign)
 	return (i);
 }
 
-char	*ft_quote_dquote(char *cmd, int *track, int index)
+char	*ft_quote_dquote(char *cmd, int index, t_pipex *pipex)
 {
 	int		i;
 	int		opened;
@@ -55,7 +55,7 @@ char	*ft_quote_dquote(char *cmd, int *track, int index)
 			opened = ft_quote_dquote_check(cmd, i + 1, cmd[i]);
 			if (opened == -1)
 			{
-				track[index]++;
+				pipex->track[index] += 1;
 				res = read_quote_dquote(cmd[i]);
 				final = ((ft_strjoin(cmd, res)));
 				free(res);
@@ -68,7 +68,7 @@ char	*ft_quote_dquote(char *cmd, int *track, int index)
 	return (cmd);
 }
 
-void	fill_quote_dquote(t_pipex *pipex, int *track)
+void	fill_quote_dquote(t_pipex *pipex)
 {
 	int		i;
 
@@ -78,7 +78,7 @@ void	fill_quote_dquote(t_pipex *pipex, int *track)
 		i = 2;
 	while (i < (pipex->ac - 1))
 	{
-		pipex->av[i] = ft_quote_dquote(pipex->av[i], track, i);
+		pipex->av[i] = ft_quote_dquote(pipex->av[i], i, pipex);
 		i++;
 	}
 }
