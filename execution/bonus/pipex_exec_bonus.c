@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 21:02:06 by caonguye          #+#    #+#             */
-/*   Updated: 2024/12/12 14:16:28 by caonguye         ###   ########.fr       */
+/*   Updated: 2024/12/13 01:10:11 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static char	*gnrt_cmd_path(char **cmd, char **envp)
 
 	if (ft_strchr(*cmd, '/'))
 	{
-		if (access_check(cmd) == 1)
+		if (access_check(cmd) == 0)
 			return (*cmd);
 		status = access_check(cmd);
 		ft_printf_fd(2, "pipex: line 77: %s: %s\n", *cmd, strerror(errno));
