@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 21:02:06 by caonguye          #+#    #+#             */
-/*   Updated: 2024/12/12 12:53:18 by caonguye         ###   ########.fr       */
+/*   Updated: 2024/12/12 14:16:28 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,6 @@ static char	*gnrt_cmd_path(char **cmd, char **envp)
 
 	if (ft_strchr(*cmd, '/'))
 	{
-		if (ft_strchr(*cmd, '.'))
-			error_isdir(cmd);
 		if (access_check(cmd) == 1)
 			return (*cmd);
 		status = access_check(cmd);
