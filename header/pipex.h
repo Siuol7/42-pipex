@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 02:53:48 by caonguye          #+#    #+#             */
-/*   Updated: 2024/12/12 03:46:17 by caonguye         ###   ########.fr       */
+/*   Updated: 2024/12/12 05:10:15 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdio.h>
 # include <sys/wait.h>
 # include <string.h>
+# include <sys/stat.h>
 
 # define BUFFER_SIZE 1024
 # define SHELLCOLOR "\033[1m\033[37m"
