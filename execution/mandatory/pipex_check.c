@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 03:24:58 by caonguye          #+#    #+#             */
-/*   Updated: 2024/12/12 05:06:00 by caonguye         ###   ########.fr       */
+/*   Updated: 2024/12/13 01:43:32 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	path_envp_check(char **envp)
 int	access_check(char **cmd)
 {
 	struct stat	stat_path;
+
 	if (stat(*cmd, &stat_path) != -1)
 	{
 		if (S_ISDIR(stat_path.st_mode))

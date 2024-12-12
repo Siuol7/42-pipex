@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 02:54:56 by caonguye          #+#    #+#             */
-/*   Updated: 2024/12/12 13:05:27 by caonguye         ###   ########.fr       */
+/*   Updated: 2024/12/13 01:44:29 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	last_free(t_pipex *pipex)
 		}
 		i++;
 	}
-	if(pipex->track)
+	if (pipex->track)
 		free(pipex->track);
 	pipex->track = NULL;
 }

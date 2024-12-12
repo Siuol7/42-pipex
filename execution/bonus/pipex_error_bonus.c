@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 03:28:46 by caonguye          #+#    #+#             */
-/*   Updated: 2024/12/12 03:24:49 by caonguye         ###   ########.fr       */
+/*   Updated: 2024/12/13 01:45:15 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,3 @@ void	error_isdir(char **cmd)
 	ft_free_2d((void **)cmd);
 	exit(126);
 }
-
