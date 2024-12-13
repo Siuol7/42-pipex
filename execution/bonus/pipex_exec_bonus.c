@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 21:02:06 by caonguye          #+#    #+#             */
-/*   Updated: 2024/12/13 02:24:19 by caonguye         ###   ########.fr       */
+/*   Updated: 2024/12/13 02:39:31 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,39 @@ static char	**extract_envp(char **envp)
 	return (path);
 }
 
+static char	*cmd_path_verify(char **path, char **cmd)
+{
+	char	*new_path;
+
+	cmd_path = ft_strjoin(path[i], "/");
+	if (!cmd_path)
+	{
+		ft_printf_f(2, "Not enough memory");
+		ft_free_2d((void **)path);
+		ft_free_2d((void **)cmd);
+		exit(1);
+	}
+	new_path = ft_strjoin(cmd_path, *cmd);
+	if (!new_path)
+	{
+		ft_printf_f(2, "Not enough memory");
+		ft_free_2d((void **)path);
+		ft_free_2d((void **)cmd);
+		free(cmd_path);
+		exit(1);
+	}
+	return (new_path);
+}
+
 static char	*cmd_path_join(char **path, char **cmd)
 {
 	char	*cmd_path;
 	int		i;
-	char	*new_path;
 
 	i = -1;
 	while (path[++i])
 	{
-		cmd_path = ft_strjoin(path[i], "/");
-		new_path = ft_strjoin(cmd_path, *cmd);
-		free(cmd_path);
-		cmd_path = new_path;
+		cmd_path = cmd_path_verify(path, cmd);
 		if (access_check(&cmd_path) == 0)
 		{
 			ft_free_2d((void **)path);
