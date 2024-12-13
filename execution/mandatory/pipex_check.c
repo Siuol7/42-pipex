@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 03:24:58 by caonguye          #+#    #+#             */
-/*   Updated: 2024/12/13 01:43:32 by caonguye         ###   ########.fr       */
+/*   Updated: 2024/12/13 02:25:03 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	access_check(char **cmd)
 	if (stat(*cmd, &stat_path) != -1)
 	{
 		if (S_ISDIR(stat_path.st_mode))
-			error_isdir(cmd);
+			return (1);
 	}
 	if (access(*cmd, F_OK) == 0)
 	{

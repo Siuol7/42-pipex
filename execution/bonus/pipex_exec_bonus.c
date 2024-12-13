@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 21:02:06 by caonguye          #+#    #+#             */
-/*   Updated: 2024/12/13 01:36:16 by caonguye         ###   ########.fr       */
+/*   Updated: 2024/12/13 02:24:19 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static char	*cmd_path_join(char **path, char **cmd)
 		new_path = ft_strjoin(cmd_path, *cmd);
 		free(cmd_path);
 		cmd_path = new_path;
-		if (access(cmd_path, F_OK) == 0)
+		if (access_check(&cmd_path) == 0)
 		{
 			ft_free_2d((void **)path);
 			return (cmd_path);
@@ -75,6 +75,8 @@ static char	*gnrt_cmd_path(char **cmd, char **envp)
 	{
 		if (access_check(cmd) == 0)
 			return (*cmd);
+		if (access_check(cmd) == 1)
+			error_isdir(cmd);
 		status = access_check(cmd);
 		ft_printf_fd(2, "pipex: line 77: %s: %s\n", *cmd, strerror(errno));
 		ft_free_2d((void **)cmd);

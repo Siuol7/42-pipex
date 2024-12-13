@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 03:25:16 by caonguye          #+#    #+#             */
-/*   Updated: 2024/12/13 01:43:27 by caonguye         ###   ########.fr       */
+/*   Updated: 2024/12/13 02:24:11 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,25 @@ int	path_envp_check(char **envp)
 	return (0);
 }
 
+// int	access_cmd_path(char *cmd_path)
+// {
+// 	struct stat	stat_path;
+
+// 	if (stat(cmd_path, &stat_path) != -1)
+// 	{
+// 		if (S_ISDIR(stat_path.st_mode))
+// 			error_isdir(cmd_path);
+// 	}
+// 	if (access(*cmd, F_OK) == 0)
+// 	{
+// 		if (access(*cmd, X_OK) == 0)
+// 			return (0);
+// 		else
+// 			return (126);
+// 	}
+// 	return (127);
+// }
+
 int	access_check(char **cmd)
 {
 	struct stat	stat_path;
@@ -37,7 +56,7 @@ int	access_check(char **cmd)
 	if (stat(*cmd, &stat_path) != -1)
 	{
 		if (S_ISDIR(stat_path.st_mode))
-			error_isdir(cmd);
+			return (1);
 	}
 	if (access(*cmd, F_OK) == 0)
 	{
