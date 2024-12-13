@@ -59,7 +59,7 @@ clean:
 
 # Fclean target
 fclean:
-	rm -rf ${NAME} ${OBJS} ${OBJS_BN}
+	rm -rf ${NAME} ${OBJS} ${OBJS_BN} .bonus
 	$(MAKE) -C ${LIBFT_DIR} fclean
 	$(MAKE) -C ${FT_PRINTF_FD_DIR} fclean
 
