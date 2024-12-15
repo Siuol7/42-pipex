@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 03:41:52 by caonguye          #+#    #+#             */
-/*   Updated: 2024/12/08 09:11:29 by caonguye         ###   ########.fr       */
+/*   Updated: 2024/12/15 06:51:37 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,12 @@ static char	*expand(char *text, int current_size)
 	return (newtext);
 }
 
-static char	*gnl_heredoc(t_pipex *pipex)
+static char	*gnl_heredoc(t_pipex *pipex, int i)
 {
 	char	word;
 	char	*text;
-	int		i;
 	int		readbytes;
 
-	i = 0;
 	text = ft_calloc(BUFFER_SIZE + 1, 1);
 	if (!text)
 		exit(1);
@@ -43,7 +41,9 @@ static char	*gnl_heredoc(t_pipex *pipex)
 		readbytes = read(0, &word, 1);
 		if (readbytes == -1)
 			error_read(text, pipex);
-		if (readbytes == 0 || word == '\n')
+		if (readbytes == 0 && i == 0)
+			return (NULL);
+		if (word == '\n')
 			break ;
 		text[i++] = word;
 		if (i >= BUFFER_SIZE)
@@ -59,8 +59,10 @@ void	read_heredoc(t_pipex *pipex)
 
 	while (1)
 	{
-		text = gnl_heredoc(pipex);
-		if (ft_strcmp(text, pipex->av[2]) == 0 || *text == '\0' )
+		text = gnl_heredoc(pipex, 0);
+		if (!text)
+			break ;
+		if (ft_strcmp(text, pipex->av[2]) == 0)
 		{
 			free(text);
 			break ;

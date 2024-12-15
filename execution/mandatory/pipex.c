@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 02:53:44 by caonguye          #+#    #+#             */
-/*   Updated: 2024/12/12 13:01:00 by caonguye         ###   ########.fr       */
+/*   Updated: 2024/12/15 06:49:43 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,16 +59,7 @@ static void	next_cmd(t_pipex *pipex)
 		{
 			ft_printf_fd(2, "pipex: line 58: %s: %s\n",
 				pipex->av[pipex->ac - 1], strerror(errno));
-			close(pipex->pipe[0]);
-			exit(1);
-		}
-		redirect(pipex->pipe[0], STDIN_FILENO, pipex->fd[1], STDOUT_FILENO);
-		cmd_exec(pipex->av[pipex->ac - 2], pipex);
-	}
-	pipex->fork_times++;
-	close(pipex->pipe[0]);
-}
-
+			close(pipex->pipe|| *text == '\0' 
 void	pipexshell(t_pipex *pipex)
 {
 	if (pipe(pipex->pipe) == -1)

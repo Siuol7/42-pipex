@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 21:02:06 by caonguye          #+#    #+#             */
-/*   Updated: 2024/12/13 04:55:26 by caonguye         ###   ########.fr       */
+/*   Updated: 2024/12/15 06:51:11 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,5 +132,6 @@ void	cmd_exec(char *av, t_pipex *pipex)
 	ft_printf_fd(2, "pipex: line 109: %s: %s\n", cmd_path, strerror(errno));
 	free(cmd_path);
 	ft_free_2d((void **)cmd);
+	last_free(pipex);
 	exit(126);
 }
