@@ -6,11 +6,11 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 18:10:39 by caonguye          #+#    #+#             */
-/*   Updated: 2024/12/18 19:37:19 by caonguye         ###   ########.fr       */
+/*   Updated: 2024/12/19 10:50:16 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./header/pipex_bonus.h"
+#include "./includes/pipex_bonus.h"
 
 static	void	ft_isword(char **final, char *s, int *wlen, int j)
 {

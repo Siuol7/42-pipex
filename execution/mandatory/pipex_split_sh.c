@@ -6,11 +6,11 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 05:45:47 by caonguye          #+#    #+#             */
-/*   Updated: 2024/12/18 19:41:33 by caonguye         ###   ########.fr       */
+/*   Updated: 2024/12/19 10:50:16 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./header/pipex_bonus.h"
+#include "./includes/pipex_bonus.h"
 
 static int	ft_wordcount(char *s, char c, int cnt, int i)
 {

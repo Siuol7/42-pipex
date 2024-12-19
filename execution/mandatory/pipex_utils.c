@@ -6,11 +6,11 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 02:54:56 by caonguye          #+#    #+#             */
-/*   Updated: 2024/12/19 09:50:34 by caonguye         ###   ########.fr       */
+/*   Updated: 2024/12/19 10:50:16 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./header/pipex.h"
+#include "./includes/pipex.h"
 
 void	redirect(int in, int stdin, int out, int stdout)
 {

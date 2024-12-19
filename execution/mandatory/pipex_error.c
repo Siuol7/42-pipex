@@ -6,11 +6,11 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 00:02:52 by caonguye          #+#    #+#             */
-/*   Updated: 2024/12/19 09:53:50 by caonguye         ###   ########.fr       */
+/*   Updated: 2024/12/19 10:50:16 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./header/pipex.h"
+#include "./includes/pipex.h"
 
 void	error_envp(char **cmd)
 {

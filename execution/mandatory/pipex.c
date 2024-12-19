@@ -6,11 +6,11 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 02:53:44 by caonguye          #+#    #+#             */
-/*   Updated: 2024/12/19 09:54:20 by caonguye         ###   ########.fr       */
+/*   Updated: 2024/12/19 10:50:16 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./header/pipex.h"
+#include "./includes/pipex.h"
 
 static void	first_cmd(t_pipex *pipex)
 {

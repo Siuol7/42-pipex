@@ -6,11 +6,11 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 02:53:46 by caonguye          #+#    #+#             */
-/*   Updated: 2024/12/18 19:41:14 by caonguye         ###   ########.fr       */
+/*   Updated: 2024/12/19 10:50:16 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./header/pipex.h"
+#include "./includes/pipex.h"
 
 int	main(int ac, char **av, char **envp)
 {

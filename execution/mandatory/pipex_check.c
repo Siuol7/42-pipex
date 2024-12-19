@@ -6,11 +6,11 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 03:24:58 by caonguye          #+#    #+#             */
-/*   Updated: 2024/12/19 10:37:25 by caonguye         ###   ########.fr       */
+/*   Updated: 2024/12/19 10:50:16 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./header/pipex.h"
+#include "./includes/pipex.h"
 
 int	path_envp_check(char **envp)
 {

@@ -6,15 +6,15 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 02:53:48 by caonguye          #+#    #+#             */
-/*   Updated: 2024/12/19 10:25:52 by caonguye         ###   ########.fr       */
+/*   Updated: 2024/12/19 10:51:27 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# include "includes/libft/libft.h"
-# include "includes/ft_printf_fd/ft_printf.h"
+# include "../library/libft/libft.h"
+# include "../library/ft_printf_fd/ft_printf.h"
 # include <fcntl.h>
 # include <sys/types.h>
 # include <errno.h>
