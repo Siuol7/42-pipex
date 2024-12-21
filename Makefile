@@ -15,8 +15,8 @@ OBJS = ${SRCS:.c=.o}
 OBJS_BN = ${BONUS:.c=.o}
 
 # Additional library paths
-LIBFT_DIR = includes/libft
-FT_PRINTF_FD_DIR = includes/ft_printf_fd
+LIBFT_DIR = library/libft
+FT_PRINTF_FD_DIR = library/ft_printf_fd
 
 # Libraries
 LIBFT = ${LIBFT_DIR}/libft.a
